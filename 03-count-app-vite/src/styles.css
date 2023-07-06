@@ -1,0 +1,19 @@
+html, body {
+    background-color: #21232A;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: 1.3rem;
+    padding: 70px;
+}
+
+button {
+    width: 6rem;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    margin: 5px;
+    color: white;
+    background: linear-gradient(hsl(162, 65%, 46%), hsl(161, 79%, 32%));
+}
