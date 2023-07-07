@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import { saludo } from './HelloWorld';
-import  {ComponentName}  from './FirstComponent';
+//import { saludo } from './HelloWorld';
+//import  {ComponentName}  from './FirstComponent';
 import './styles.css';
 import { CounterApp } from './CounterApp';
 
