@@ -4,7 +4,7 @@ describe('Demo component', () => {
         const message1 = 'Hola Mundo'
         //2 estimulo
         const message2 = message1.trim()
-        //33 observar el comportamiento
+        //3 observar el comportamiento
         expect( message1 ).toBe( message2 )
     }) 
 })

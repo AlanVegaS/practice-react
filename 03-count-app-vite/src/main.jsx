@@ -1,7 +1,15 @@
-import { createRoot } from 'react-dom/client';
+//import { createRoot } from 'react-dom/client';
 //import { saludo } from './HelloWorld';
 //import  {ComponentName}  from './FirstComponent';
 import './styles.css';
+import ReactDOM from 'react-dom';
 import { CounterApp } from './CounterApp';
 
-createRoot(document.getElementById('root')).render(<CounterApp value={1} />);
+/*ReactDOM.render(
+    <ComponentName tittle="Hola, soy el título" subtittle = "Soy un sub"/>,
+    document.getElementById('root')
+);*/
+ReactDOM.render(
+    <CounterApp value={20}/>,
+    document.getElementById('root')
+);

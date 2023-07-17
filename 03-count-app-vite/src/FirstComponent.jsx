@@ -5,8 +5,9 @@ const newMessage = () => {
 }
 
 export const ComponentName = ({ tittle, subtittle }) => {
-    return <><h2>{tittle}</h2>
-        <h3>{subtittle}</h3>
+    return <><h1 data-testid = "test-title">{tittle}</h1>
+        <h2>{subtittle}</h2>
+        <h2>{subtittle}</h2>
         <p>{newMessage()}</p></>
 }
 

@@ -33,5 +33,3 @@ const { nombreClave, anios, latlng: { lat, lng } } = usContext( persona );
 
 console.log(nombreClave, anios);
 console.log( lat, lng );
-
-
