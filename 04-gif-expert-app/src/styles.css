@@ -1,3 +1,45 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(245, 250, 253);
+    padding: 60px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    padding: .4rem;
+    display: block;
+    margin:  3rem auto 3rem ;
+    width: 50rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+.img-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 30px;
+}
+
+.card {
+    background-color: rgb(226, 226, 226);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all .2s;
+}
+.card:hover {
+    box-shadow: 2px 2px 10px rgba(163, 163, 163, 0.2);
+    transform: scale(1.02);
+    cursor: pointer;
+}
+.card img {
+    width: 100%;
+}
+.card p {
+    padding-left: 1rem;
 }
