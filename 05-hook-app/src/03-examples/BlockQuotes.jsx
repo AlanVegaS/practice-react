@@ -17,9 +17,9 @@ export const BlockQuotes = ({ data }) => {
                 className="blockquote text-end"
                 style={{ display: 'flex' }}
             >
-                <h2 ref={pRef} className="mb-1">{species}</h2>
+                <h2 ref={pRef} className="mb-1">{name}</h2>
                 {/*<h2 className="mb-1">{gender}</h2>*/}
-                <footer className="blockquote-footer">{name}</footer>
+                <footer className="blockquote-footer">{species}</footer>
             </blockquote>
             <code>{JSON.stringify(boxSize)}</code>
         </>
