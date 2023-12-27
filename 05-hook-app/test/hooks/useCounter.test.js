@@ -39,7 +39,7 @@ describe('Pruebas en el useCounter', () => {
 
         expect(result.current.counter).toBe(97)
     });
-    test('Debe aresetear el contador', () => {
+    test('Debe resetear el contador', () => {
         const { result } = renderHook(() => useCounter(100))
         const { counter, decrement, reset } = result.current
 

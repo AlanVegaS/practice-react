@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { AboutPage, HomePage, LoginPage, MainApp, ErrorPage } from "./09-useContext";
+import {MultipleCustomHooks} from './03-examples'
 
 export const getRoutes = () => createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const getRoutes = () => createBrowserRouter([
             {
                 path: "/about",
                 element: <AboutPage />,
+            },
+            {
+                path: "/MultipleHooks",
+                element: <MultipleCustomHooks/>
             }
         ]
     }
