@@ -1,3 +1,4 @@
+import React from 'react'
 import { Outlet, NavLink } from "react-router-dom"
 import { UserProvider } from "./context/UserProvider"
 
@@ -13,6 +14,7 @@ export const MainApp = () => {
                     </ul>
                 </div>
             </nav>
+            <h1>HomePage</h1>
             <hr />
             <Outlet />
         </UserProvider>

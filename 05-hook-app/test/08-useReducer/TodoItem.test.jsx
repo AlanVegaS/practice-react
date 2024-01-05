@@ -1,6 +1,6 @@
 import React from "react";
 import { TodoItem } from "../../src/08-useReducer/TodoItem";
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 describe('Pruebas en <TodoItem/>', () => {
 
@@ -30,5 +30,50 @@ describe('Pruebas en <TodoItem/>', () => {
         const spanElement = screen.getByLabelText('span')
         expect(spanElement.className).toContain('align-self-center')
         expect(spanElement.className).not.toContain('text-decoration-line-through')
+    });
+
+    test('Debe mostrar el Todo completado', () => {
+
+        todo.done = true
+
+        render(<TodoItem
+            todoItem={todo}
+            onDoneTodo={onDoneTodoMock}
+            onDeleteTodo={onDeleteTodoMock}
+        />
+        )
+
+        const spanElement = screen.getByLabelText('span')
+        expect(spanElement.className).toContain('text-decoration-line-through')
+    });
+
+    test('Debe de llamarse el todo cuando se hace click', () => {
+
+        render(<TodoItem
+            todoItem={todo}
+            onDoneTodo={onDoneTodoMock}
+            onDeleteTodo={onDeleteTodoMock}
+        />
+        )
+
+        const spanElement = screen.getByLabelText('span')
+        fireEvent.doubleClick(spanElement)
+
+        expect(onDoneTodoMock).toHaveBeenCalledWith(todo.id)
+    });
+
+    test('Debe de eliminarse el todo cuando se hace click en borrar', () => {
+
+        render(<TodoItem
+            todoItem={todo}
+            onDoneTodo={onDoneTodoMock}
+            onDeleteTodo={onDeleteTodoMock}
+        />
+        )
+
+        const deleteButton = screen.getByRole('button')
+        fireEvent.click(deleteButton)
+        
+        expect(onDeleteTodoMock).toHaveBeenCalledWith(todo.id)
     });
 })
