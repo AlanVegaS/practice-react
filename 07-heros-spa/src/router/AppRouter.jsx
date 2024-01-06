@@ -1,36 +1,43 @@
 import React from 'react'
 import {
-    createBrowserRouter,
-    RouterProvider,
-  } from "react-router-dom";
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+
 import { HerosApp } from '../HerosApp';
 import { Login } from '../pages/Login';
-import { DC } from '../heros/pages/DC';
-import { Marvel } from '../heros/pages/Marvel';
+import { DC, Marvel } from '../heros';
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HerosApp/>,
-    },
-    {
-        path: "/login",
-        element: <Login/>,
-      },
+  {
+    path: '/',
+    element: <HerosApp />,
+    children: [
       {
-        path: "/dc",
-        element: <DC/>,
+        path: '/',
+        element: <Navigate to = {'/marvel'}/>
       },
       {
         path: "/marvel",
-        element: <Marvel/>,
+        element: <Marvel />,
       },
-  ]);
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/dc",
+        element: <DC />,
+      },
+    ]
+  },
+]);
 
 export const AppRouter = () => {
   return (
     <>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </>
   )
 }

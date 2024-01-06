@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom"
+import { Navbar } from "./ui"
 
 export const HerosApp = () => {
   return (
     <>
-        <h1>HerosApp</h1>
-        <Outlet/>
+      <Navbar/>
+      <Outlet />
     </>
   )
 }
