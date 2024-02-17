@@ -1,11 +1,11 @@
 import React from 'react'
-import { Outlet } from "react-router-dom"
+import { HeroList } from '../components'
 
 export const DC = () => {
   return (
     <>
       <h1>DC</h1>
-      <Outlet/>
+      <HeroList publisher='DC Comics' />
     </>
   )
 }
