@@ -4,30 +4,25 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-
 import { Login } from '../auth/pages';
 import { HerosRoutes } from '../heros';
 import { Marvel, DC, Search, Hero } from '../heros/pages';
+import { PublicRouter } from './PublicRouter';
+import { PrivateRouter } from './PrivateRouter'
 
 const router = createBrowserRouter([
   {
     path: '/login',
-    element: <Login />,
-    /*children: [
-      {
-        path: '/*',
-        element: <Navigate to={'/marvel'} />
-      }
-    ]*/
+    element: <PublicRouter> <Login /> </PublicRouter>,
   },
   {
     path: '/',
-    element: <HerosRoutes />,
+    element: <PrivateRouter><HerosRoutes/></PrivateRouter>,
     children: [
-      /*{
-        path: '/*',
-        element: <Navigate to={'/marvel'} />
-      },*/
+      {
+        path: '/',
+        element: <Marvel />
+      },
       {
         path: "/marvel",
         element: <Marvel />,

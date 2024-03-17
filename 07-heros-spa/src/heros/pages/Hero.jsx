@@ -9,7 +9,6 @@ export const Hero = () => {
   const navigate = useNavigate()
 
   const onNavigateBack = () => {
-    console.log('hola');
     navigate(-1)
   }
 
