@@ -5,7 +5,7 @@ import { RouterProvider } from 'react-router'
 import { createBrowserRouter } from 'react-router-dom'
 
 describe('Validar <PublicRouter/>', () => {
-    test('Debe mostrar el children  si no eta autenticado', () => {
+    test('Debe mostrar el children  si no esta autenticado', () => {
         const contextValue = {
             logged: false
         }

@@ -1,24 +1,53 @@
 import { render, screen } from "@testing-library/react"
-import { AuthContext } from "../../../src/auth"
-import { PrivateRouter } from "../../../src/router/PrivateRouter"
-import { createMemoryRouter } from "react-router-dom"
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 import { Routes } from "../../../src/router/routes"
-import { createMemoryHistory } from 'history';
+import { AuthContext } from "../../../src/auth/context";
 
 describe('Probar <PrivateRouter/>', () => {
-    test('Debe mostrar marvel que es ruta privada', () => {
+    test('Debe mostrar login sino esta autenticado', () => {
 
         const contextValue = {
             logged: false
         }
 
-        const router = createMemoryHistory(Routes, {
-            initialEntries:['/marvel']
+        const router = createMemoryRouter(Routes, {
+            initialEntries: ["/marvel", "/login"],
+            initialIndex: 1,
         })
 
         render(
-            
+            <AuthContext.Provider value={contextValue}>
+                <RouterProvider router={router} />
+            </AuthContext.Provider>
         )
 
+        expect(screen.getAllByText('Login').length).toBe(2)
+        //screen.debug()
+    })
+
+    test('Debe mostrar el componente Marvel si esta autenticado', () => {
+
+        const contextValue = {
+            logged: true,
+            user: {
+                id: '123',
+                name: 'Mingo'
+            }
+        }
+
+        const router = createMemoryRouter(Routes, {
+            initialEntries: ['/marvel', '/login'],
+            initialIndex: 0
+        })
+
+        render(
+            <AuthContext.Provider value={contextValue}>
+                <RouterProvider router={router}/>
+            </AuthContext.Provider>
+        )
+
+        expect(screen.getByText('Marvel', {selector: 'a'})).toBeTruthy()
+
+        screen.debug() 
     })
 })

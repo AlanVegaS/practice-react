@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react"
 import { AuthContext } from "../../../src/auth"
 import { PrivateRouter } from "../../../src/router/PrivateRouter"
-import { MemoryRouter, RouterProvider, createBrowserRouter } from "react-router-dom"
+import { MemoryRouter, RouterProvider, createBrowserRouter, createMemoryRouter } from "react-router-dom"
+import { Routes } from "../../../src/router/routes"
+
 
 describe('Probar <PrivateRouter/>', () => {
     test('Debe mostrar marvel que es ruta privada', () => {
@@ -30,32 +32,22 @@ describe('Probar <PrivateRouter/>', () => {
         //expect(localStorage.setItem).toHaveBeenCalledWith('lastPath')
     })
 
-    /*test('Debe navegar si no está autenticado', () => {//esta prueba no la pude concluir, no logre renderizar correctamente la ruta de login
+    test('Debe navegar si no está autenticado', () => {//esta prueba no la pude concluir, no logre renderizar correctamente la ruta de login
         const contextValueLogout = {
             logged: false
         };
 
-        const router = createBrowserRouter([
-            {
-                path: '/',
-                element: (
-                    (<PrivateRouter>
-                        <h1>Marvel Privado1</h1>
-                    </PrivateRouter>)
-                )
-            },{
-                path: '/login',
-                element: (
-                    <h1>Página de inicio de sesión</h1>
-                )
-            }
-        ]);
+        const router = createMemoryRouter(Routes, {
+            initialEntries: ["/marvel", "/login"],
+            initialIndex: 0,
+          });
 
         render(
             <AuthContext.Provider value={contextValueLogout}>
                 <RouterProvider router={router} />
             </AuthContext.Provider>
-        );
+        )
+
         screen.debug()
-    });*/
+    });
 })

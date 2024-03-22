@@ -18,6 +18,10 @@ export const Routes = [
           element: <Marvel />
         },
         {
+          path: '/*',
+          element: <Marvel />
+        },
+        {
           path: "/marvel",
           element: <Marvel />,
         },
