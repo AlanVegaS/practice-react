@@ -25,7 +25,7 @@ describe('Pruebas en todoReducer', () => {
         const newState = todoReducer(initialState, action)
         //console.log(newState);
         expect(newState.length).toBe(2)
-        expect(newState).toContain(action.payload)//toContain valida los valores de un objeto, efectivo para validar objetos
+        expect(newState).toContain(action.payload)//toContain valida los valores de un objeto, efectivo para validar arrays
     })
 
     test('debe de eliminar un todo', () => {
