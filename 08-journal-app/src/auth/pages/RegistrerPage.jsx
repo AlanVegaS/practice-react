@@ -1,18 +1,45 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { Button, Grid, Link, TextField, Typography } from '@mui/material'
-import { Google } from '@mui/icons-material'
 import { AuthLayout } from '../layout/AuthLayout'
+import { useForm } from '../../hooks'
+
+const formData = {
+  email: 'alanvega@gmail.com',
+  password: '1234',
+  displayName: 'Alan V'
+}
+
+const formValidations = {
+  email: [(value) => value.includes('@'), 'Password without @'],
+  password: [(value) => value.length >= 6, 'The password must have more than 6 characters'],
+  displayName: [(value) => value.length >= 1, 'Type your name']
+}
 
 export const RegistrerPage = () => {
+
+  const { displayName, email, password, onInputChange, formState,
+    displayNameValid, emailValid, passwordValid, } = useForm(formData)
+
+  const onSubmit = (event) => {
+    event.preventDefault()
+    console.log(formState)
+
+  }
+
   return (
     <AuthLayout title="Create a new account">
-      <form>
+      <form onSubmit={onSubmit}>
         <Grid item xs={12} sx={{ mt: 2 }}>
           <TextField
             label="Full name"
             type='text'
             placeholder='Alan Vega'
             fullWidth
+            name='displayName'
+            value={displayName}
+            onChange={onInputChange}
+            error={!displayNameValid}
+            helperText={emailValid}
           />
         </Grid>
 
@@ -22,6 +49,11 @@ export const RegistrerPage = () => {
             type='email'
             placeholder='email@google.com'
             fullWidth
+            name='email'
+            value={email}
+            onChange={onInputChange}
+            error={!emailValid}
+            helperText={emailValid}
           />
         </Grid>
 
@@ -30,10 +62,15 @@ export const RegistrerPage = () => {
             label="Password"
             type='password'
             fullWidth
+            name='password'
+            value={password}
+            onChange={onInputChange}
+            error={!passwordValid}
+            helperText={passwordValid}
           />
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} sm={12}>
-              <Button variant='contained' fullWidth>
+              <Button variant='contained' fullWidth type='submit'>
                 Create account
               </Button>
             </Grid>
@@ -42,7 +79,7 @@ export const RegistrerPage = () => {
 
         <Grid container direction='row' justifyContent='end'>
           <Typography>Already have an account?</Typography>
-          <Link component={RouterLink} color='inherit' to='/auth/login' sx={{ml:1}}>
+          <Link component={RouterLink} color='inherit' to='/auth/login' sx={{ ml: 1 }}>
             Sign in
           </Link>
         </Grid>
