@@ -1,9 +1,13 @@
-import { registrerUserWithEmailPassword, signWithGoogle } from "../../firebase/providers"
+import { registrerUserWithEmailPassword, signWithGoogle, loginWithEmailPassword } from "../../firebase/providers"
 import { checkingCredential, login, logout } from "./"
 
-export const checkingAuthenticate = (email, password) => {
+export const startLoginEmailPassword = ({ email, password }) => {
     return async (dispatch) => {
         dispatch(checkingCredential())
+        const { ok, uid, photoURL, errorMessage } = await loginWithEmailPassword({ email, password })
+
+        if (!ok) return dispatch(logout({ errorMessage }))
+        dispatch(login({ uid, photoURL, errorMessage }))
     }
 }
 
@@ -17,13 +21,13 @@ export const startGoogleSignIn = () => {
     }
 }
 
-export const startCreatingUserWithEmailPassword = ({email, password, displayName})  => {
-    console.log('startCreatingUserWithEmailPassword'+ email + password);
-    return async(dispatch) => {
+export const startCreatingUserWithEmailPassword = ({ email, password, displayName }) => {
+    return async (dispatch) => {
         console.log('startCreatingUserWithEmailPassword');
         dispatch(checkingCredential());
-        console.log('startCreatingUserWithEmailPassword');
-        const resp = await registrerUserWithEmailPassword({email, password, displayName});
-        console.log(resp);
+        const { ok, uid, photoURL, errorMessage } = await registrerUserWithEmailPassword({ email, password, displayName });
+
+        if (!ok) return dispatch(logout({ errorMessage }))
+        dispatch(login({ uid, displayName, email, photoURL }))
     }
 }

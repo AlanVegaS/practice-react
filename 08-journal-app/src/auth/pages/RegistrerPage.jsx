@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { useDispatch } from "react-redux";
+import { useMemo, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from 'react-router-dom'
-import { Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { AuthLayout } from '../layout/AuthLayout'
 import { useForm } from '../../hooks'
 import { startCreatingUserWithEmailPassword } from '../../store/auth';
@@ -21,7 +21,10 @@ const formValidations = {
 export const RegistrerPage = () => {
 
   const dispatch = useDispatch();
-  const [formSubmitted, setformSubmitted] = useState(false)
+  const [formSubmitted, setformSubmitted] = useState(false);
+
+  const { status, errorMessage } = useSelector(state => state.auth)
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status]);
 
   const { displayName, email, password, onInputChange, formState,
     displayNameValid, emailValid, passwordValid, isFormValid } = useForm(formData, formValidations)
@@ -29,7 +32,6 @@ export const RegistrerPage = () => {
   const onSubmit = (event) => {
     event.preventDefault()
     setformSubmitted(true)
-    console.log(isFormValid);
     if (!isFormValid) return
     dispatch(startCreatingUserWithEmailPassword(formData));
   }
@@ -77,8 +79,20 @@ export const RegistrerPage = () => {
             helperText={passwordValid}
           />
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              display={!errorMessage ? 'none' : ''}
+            >
+              <Alert severity='error'>{errorMessage}</Alert>
+            </Grid>
             <Grid item xs={12} sm={12}>
-              <Button variant='contained' fullWidth type='submit'>
+              <Button
+                variant='contained'
+                fullWidth type='submit'
+                disabled={isCheckingAuthentication}
+              >
                 Create account
               </Button>
             </Grid>
