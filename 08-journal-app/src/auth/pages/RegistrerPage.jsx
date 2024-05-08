@@ -7,9 +7,9 @@ import { useForm } from '../../hooks'
 import { startCreatingUserWithEmailPassword } from '../../store/auth';
 
 const formData = {
-  email: 'alanvega@gmail.com',
-  password: '123456',
-  displayName: 'Alan Vega'
+  email: '',
+  password: '',
+  displayName: ''
 }
 
 const formValidations = {
@@ -32,13 +32,14 @@ export const RegistrerPage = () => {
   const onSubmit = (event) => {
     event.preventDefault()
     setformSubmitted(true)
+    console.log('formData ',formState);
     if (!isFormValid) return
-    dispatch(startCreatingUserWithEmailPassword(formData));
+    dispatch(startCreatingUserWithEmailPassword(formState));
   }
 
   return (
     <AuthLayout title="Create a new account">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
         <Grid item xs={12} sx={{ mt: 2 }}>
           <TextField
             label="Full name"
@@ -49,7 +50,7 @@ export const RegistrerPage = () => {
             value={displayName}
             onChange={onInputChange}
             error={!!displayNameValid && formSubmitted}
-            helperText={displayNameValid}
+            helperText={displayNameValid && formSubmitted}
           />
         </Grid>
 
@@ -63,7 +64,7 @@ export const RegistrerPage = () => {
             value={email}
             onChange={onInputChange}
             error={!!emailValid && formSubmitted}
-            helperText={emailValid}
+            helperText={emailValid && formSubmitted}
           />
         </Grid>
 
@@ -76,7 +77,7 @@ export const RegistrerPage = () => {
             value={password}
             onChange={onInputChange}
             error={!!passwordValid && formSubmitted}
-            helperText={passwordValid}
+            helperText={passwordValid && formSubmitted}
           />
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid

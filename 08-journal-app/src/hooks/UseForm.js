@@ -26,7 +26,7 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
     }
 
     const onResetForm = () => {
-        setFormState(initialForm);
+        setFormState('form ',initialForm);
     }
 
     const createValidators = () => {//run  in use efect
@@ -35,7 +35,6 @@ export const useForm = (initialForm = {}, formValidations = {}) => {
             const [fn, errorMessage] = formValidations[formField]
             formCheckValues[`${formField}Valid`] = fn(formState[formField]) ? null : errorMessage
         }
-        console.log('---' + JSON.stringify(formCheckValues));
         setformValidation(formCheckValues)
     }
 

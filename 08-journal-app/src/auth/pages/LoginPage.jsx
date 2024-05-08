@@ -13,10 +13,7 @@ export const LoginPage = () => {
   const isAuthenticating = useMemo(() => status === 'checking')
 
 
-  const { email, password, onInputChange } = useForm({
-    email: 'alanvega@gmail.com',
-    password: '123456'
-  })
+  const { email, password, onInputChange } = useForm({})
 
   const dispatch = useDispatch()
 
@@ -31,7 +28,7 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout title="Sign in">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
         <Grid item xs={12} sx={{ mt: 2 }}>
           <TextField
             label="Emaill"
@@ -53,7 +50,7 @@ export const LoginPage = () => {
             value={password}
             onChange={onInputChange}
           />
-          <Grid container xs={12} sx={{ mt: 2 }} display={!errorMessage ? 'none':''}>
+          <Grid item xs={12} sx={{ mt: 2 }} display={!errorMessage ? 'none':''}>
             <Alert severity='error'>{errorMessage}</Alert>
           </Grid>
           <Grid container spacing={2} sx={{ mb: 1, mt: 1 }}>

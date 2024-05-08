@@ -1,7 +1,9 @@
 import React from 'react'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { AppRouter } from './router/AppRouter'
 
 export const JournalApp = () => {
-  return (
-    <div>JournalApp Hola Mundo</div>
-  )
+  const router = createBrowserRouter(AppRouter())
+
+  return <RouterProvider router={router} />
 }

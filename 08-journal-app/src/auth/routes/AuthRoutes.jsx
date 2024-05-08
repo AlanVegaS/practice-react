@@ -7,11 +7,8 @@ export const AuthRoutes = [
     index: true,
     path: 'login',
     element: <LoginPage />
-  }, {
+  },{
     path: 'registrer',
-    element: <RegistrerPage />
-  }, {
-    path: '*',
-    element: <Navigate to={'/auth/login'} />
+    element: <RegistrerPage/>
   }
 ]

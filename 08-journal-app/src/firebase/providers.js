@@ -18,9 +18,7 @@ export const signWithGoogle = async () => {
             displayName, email, photoURL, uid
         }
     } catch (error) {
-        console.log(error);
         const errorMessage = error.message
-
         return {
             ok: false,
             errorMessage
@@ -28,15 +26,15 @@ export const signWithGoogle = async () => {
     }
 }
 
-export const registrerUserWithEmailPassword = async ({ email, password, displayname }) => {
+export const registrerUserWithEmailPassword = async ({ email, password, displayName }) => {
     try {
         const resp = await createUserWithEmailAndPassword(FireBaseAuth, email, password);
         const { uid, photoURL } = resp.user;
-        await updateProfile(FireBaseAuth.currentUser, { displayname });
+        await updateProfile(FireBaseAuth.currentUser, { displayName });
 
         return {
             ok: true,
-            uid, photoURL, email, displayname
+            uid, photoURL, email, displayName
         }
     } catch (error) {
         return {
@@ -50,15 +48,20 @@ export const loginWithEmailPassword = async ({ email, password }) => {
     try {
         const resp = await signInWithEmailAndPassword(FireBaseAuth, email, password);
         const { uid, photoURL, displayName } = resp.user;
-
+        
         return {
             ok: true,
-            uid, photoURL, email, displayName
+            uid, photoURL, displayName
         }
     } catch (error) {
+        console.log(error);
         return {
             ok: false,
             errorMessage: error.message
         }
     }
+}
+
+export const logoutFireBase = async() => {
+    return await FireBaseAuth.signOut();
 }
