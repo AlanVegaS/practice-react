@@ -7,19 +7,21 @@ import { useDispatch, useSelector } from "react-redux"
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
 import { useMemo } from 'react'
 
+const formData = { email: '', password: '' }
+
 export const LoginPage = () => {
 
   const { status, errorMessage } = useSelector(state => state.auth)
   const isAuthenticating = useMemo(() => status === 'checking')
 
 
-  const { email, password, onInputChange } = useForm({})
+  const { email, password, onInputChange } = useForm(formData)
 
   const dispatch = useDispatch()
 
   const onSubmit = (event) => {
     event.preventDefault()
-    dispatch(startLoginEmailPassword({ email, password }))
+    dispatch(startLoginEmailPassword())
   }
 
   const onGoogleSignin = () => {
@@ -50,7 +52,7 @@ export const LoginPage = () => {
             value={password}
             onChange={onInputChange}
           />
-          <Grid item xs={12} sx={{ mt: 2 }} display={!errorMessage ? 'none':''}>
+          <Grid item xs={12} sx={{ mt: 2 }} display={!errorMessage ? 'none' : ''}>
             <Alert severity='error'>{errorMessage}</Alert>
           </Grid>
           <Grid container spacing={2} sx={{ mb: 1, mt: 1 }}>
