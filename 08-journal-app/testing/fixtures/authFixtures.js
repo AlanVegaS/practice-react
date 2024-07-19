@@ -31,3 +31,10 @@ export const demoUser = {
     displayName: 'Demo User',
     photoURL: 'https://demo.jpg'
 };
+
+export const clearNotes = {
+    isSaving: false,
+    messageSaved: '',
+    notes: [],
+    active: null
+}
