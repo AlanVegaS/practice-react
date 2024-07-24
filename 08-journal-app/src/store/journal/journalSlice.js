@@ -20,7 +20,7 @@ export const journalSlice = createSlice({
             state.isSaving = true
         },
         addNewEmptyNote: (state, action) => {
-            console.log(JSON.stringify(action));
+            console.log('new note : '+JSON.stringify(action));
             state.notes.push(action.payload)
             state.isSaving = false
         },

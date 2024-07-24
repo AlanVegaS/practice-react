@@ -5,7 +5,7 @@ import { fileUpload, loadNotes } from "../../helpers";
 
 export const startNewNote = () => {
     return async (dispatch, getState) => {
-        const { uid } = getState().auth
+        const { uid } = getState().auth;
         const newNote = {
             title: '',
             body: '',

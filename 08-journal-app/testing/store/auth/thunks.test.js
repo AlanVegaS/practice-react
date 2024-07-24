@@ -48,7 +48,7 @@ describe('Testing AuthThunks', () => {
         expect(dispatch).toHaveBeenCalledWith(login(loginData));
     });
 
-    test('startLogout should called logout', async() => {
+    test('startLogout should called logout', async () => {
         await startLogout()(dispatch);
 
         expect(logoutFireBase).toHaveBeenCalled();
