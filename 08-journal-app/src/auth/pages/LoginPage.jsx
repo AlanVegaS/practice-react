@@ -1,10 +1,9 @@
 import { Link as RouterLink } from 'react-router-dom';
-import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 import { startLoginEmailPassword, startGoogleSignIn } from '../../store/auth';
 import { useDispatch, useSelector } from "react-redux";
-//import Google from '@mui/icons-material/Google';
+import Google from '@mui/icons-material/Google';
 import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -36,10 +35,13 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout title="Sign in">
-      <form onSubmit={onSubmit} className='animate__animated animate__fadeIn animate__faster'>
+      <form 
+      onSubmit={onSubmit} 
+      aria-label="submit-form"
+      className='animate__animated animate__fadeIn animate__faster'>
         <Grid item xs={12} sx={{ mt: 2 }}>
           <TextField
-            label="Emaill"
+            label="Email"
             type='email'
             placeholder='email@google.com'
             fullWidth
@@ -55,6 +57,9 @@ export const LoginPage = () => {
             type='password'
             fullWidth
             name='password'
+            inputProps={{
+              'data-testid': 'password'
+            }}
             value={password}
             onChange={onInputChange}
           />
@@ -77,6 +82,7 @@ export const LoginPage = () => {
                 variant='contained'
                 fullWidth
                 disabled={isAuthenticating}
+                aria-label='google-signin-button'
               >
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
