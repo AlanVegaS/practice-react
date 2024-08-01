@@ -1,4 +1,3 @@
-import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { AppRouter } from './router/AppRouter';
 
@@ -7,4 +6,4 @@ export const App = () => {
 
   return <RouterProvider router={router} />
 
-}
+};
